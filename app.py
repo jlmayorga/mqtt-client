@@ -16,14 +16,15 @@ print("Connecting")
 client.connect(broker_url, broker_port)
 print("Connected")
 
-for n in range(100):
-    print("Sending payload")
-    temperature = random.randrange(0, 40)
-    humidity = random.randrange(20, 60)
-    payload = {"device": pod_name, "temp": temperature, "humidity": humidity}
-    payload_json = json.dumps(payload)
-    print(f'Payload: {payload_json}')
-    client.publish(topic_name, payload_json)
-    sleep(randint(100, 500)/1000)
-
-client.disconnect()
+try:
+    while True:
+        print("Sending payload")
+        temperature = random.randrange(0, 40)
+        humidity = random.randrange(20, 60)
+        payload = {"device": pod_name, "temp": temperature, "humidity": humidity}
+        payload_json = json.dumps(payload)
+        print(f'Payload: {payload_json}')
+        client.publish(topic_name, payload_json)
+        sleep(randint(100, 500)/1000)
+except:
+    client.disconnect()

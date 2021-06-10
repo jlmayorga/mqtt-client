@@ -8,7 +8,7 @@ import paho.mqtt.client as mqtt
 
 broker_url = os.getenv("BROKER_URL", "localhost")
 broker_port = int(os.getenv("BROKER_PORT", "1883"))
-pod_name = os.getenv("POD_NAME", default="POD123")
+pod_name = os.getenv("HOSTNAME", default="POD123")
 topic_name = "iot/"
 
 client = mqtt.Client(pod_name)
